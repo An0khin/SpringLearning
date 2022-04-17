@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/> <!-- For property from outside -->
+
+    <!-- dependency injection using constructor -->
+
+   <!-- <bean id="Music"
+          class="com.home.RockMusic">
+    </bean>
+
+    <bean id="MusicPlayer"
+          class="com.home.MusicPlayer">
+        <constructor-arg ref="Music"/>
+    </bean>
+    -->
+
+    <!-- dependency injection using setter -->
+
+   <!-- <bean id="Music"
+          class="com.home.RockMusic">
+    </bean>
+
+    <bean id="MusicPlayer"
+          class="com.home.MusicPlayer">
+        <property name="music" ref="Music"/>  For this u need use setter
+        <property name="name" value="Favourite"/>
+        <property name="volume" value="60"/>
+    </bean>
+    -->
+
+    <bean id="Music"
+          class="com.home.RockMusic"/>
+
+    <bean id="Music2"
+          class="com.home.ClassicalMusic"/>
+
+    <bean id="MusicPlayer"
+          class="com.home.MusicPlayer">
+        <property name="music" ref="Music"/>
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+
+        <property name="musicList">
+            <list value-type="com.home.Music">
+                <ref bean="Music"/>
+                <ref bean="Music2"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>
