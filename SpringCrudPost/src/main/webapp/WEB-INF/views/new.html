@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New movie</title>
+</head>
+<body>
+    <form th:action="@{/movies}" th:method="POST" th:object="${movie}">
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <br>
+        <label for="rate">Enter rate: </label>
+        <input type="number" th:field="*{rate}" id="rate"/>
+        <br>
+        <input type="submit" value="Submit!"/>
+    </form>
+</body>
+</html>
